@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.5.0'
 
+gem 'dotenv-rails', groups: [:development, :test]
+
 gem 'rails', '~> 5.2.0'
 
 # Use SCSS for stylesheets
@@ -162,7 +164,5 @@ group :development, :test do
   # Deploy
   gem 'mina', ref: '343a7', git: 'https://github.com/mina-deploy/mina.git'
 
-  # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-  gem 'dotenv-rails'
   gem 'rspec_junit_formatter'
 end
