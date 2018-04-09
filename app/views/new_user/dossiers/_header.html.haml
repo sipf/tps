@@ -1,6 +1,21 @@
-.accompagnateur-header
+.usager-header
   .container
-    %h1.page-title= dossier.procedure.libelle
+    .flex
+      - if !dossier.brouillon?
+        .dossier-id
+          = "Dossier n° #{dossier.id}"
+          %br
+          = link_to "retour aux dossiers", dossiers_path
+
+      %div
+        %h1.page-title
+          = dossier.procedure.organisation
+          %br
+          %small
+            = dossier.procedure.libelle
+      - if !dossier.brouillon?
+        .dossier-status
+          = render partial: "shared/dossiers/status", locals: { dossier: dossier }
 
     - if !dossier.brouillon?
       %ul.tabs

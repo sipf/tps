@@ -2,19 +2,6 @@
 @import "constants";
 
 .dossier-edit {
-  .dossier-header {
-    background-color: $light-grey;
-    margin-bottom: $default-padding;
-
-    .container {
-      padding: $default-padding;
-    }
-
-    h1 {
-      font-size: 22px;
-    }
-  }
-
   .thanks {
     padding: (1.5 * $default-padding) 0;
   }

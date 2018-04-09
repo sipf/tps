@@ -1,0 +1,31 @@
+@import "placeholders";
+
+.usager-header {
+  @extend %header;
+
+  .dossier-id, h1, .dossier-status {
+    margin-top: $default-padding;
+    margin-bottom: $default-padding;
+    line-height: 30px;
+  }
+
+  .dossier-id, .dossier-status {
+    flex-shrink: 0;
+  }
+
+  .dossier-id {
+    margin-right: $default-padding;
+  }
+
+  .dossier-status {
+    margin-left: $default-padding;
+  }
+
+  h1 {
+    font-size: 22px;
+
+    small {
+      font-size: 16px;
+    }
+  }
+}
