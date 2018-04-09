@@ -36,6 +36,9 @@ module NewUser
     def show
       dossier_with_champs
 
+      if dossier_with_champs.brouillon?
+        redirect_to modifier_dossier_path(dossier_with_champs)
+      end
     end
 
     def modifier
