@@ -1,7 +1,5 @@
 .dossier-edit
-  .dossier-header
-    .container
-      %h1= @dossier.procedure.libelle
+  = render partial: "header", locals: { dossier: @dossier_with_champs }
 
   .container
     - if @dossier.procedure.lien_notice.present?
