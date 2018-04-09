@@ -1,0 +1,18 @@
+.accompagnateur-header
+  .container
+    .flex.justify-between
+      %ul.breadcrumbs
+        %li
+          = "Dossier nº #{dossier.id}"
+        %li
+          = link_to dossier.procedure.libelle.truncate_words(10), gestionnaire_procedure_path(dossier.procedure), title: dossier.procedure.libelle
+
+    %ul.tabs
+      %li{ class: current_page?(dossier_path(dossier)) ? 'active' : nil }
+        = link_to "Données d'identité", dossier_path(dossier.procedure, dossier)
+      %li{ class: current_page?(dossier_path(dossier)) ? 'active' : nil }
+        = link_to "Formulaire", dossier_path(dossier)
+      %li{ class: current_page?(dossier_path(dossier)) ? 'active' : nil }
+        = link_to "Messagerie", dossier_path(dossier)
+      %li{ class: current_page?(dossier_path(dossier)) ? 'active' : nil }
+        = link_to "Décision", dossier_path(dossier)

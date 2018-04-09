@@ -1,7 +1,7 @@
 module NewUser
   class DossiersController < UserController
     before_action :ensure_ownership!, except: [:index, :modifier, :update]
-    before_action :ensure_ownership_or_invitation!, only: [:modifier, :update]
+    before_action :ensure_ownership_or_invitation!, only: [:modifier, :update, :show]
     before_action :forbid_invite_submission!, only: [:update]
 
     def attestation
@@ -31,6 +31,11 @@ module NewUser
         flash.now.alert = @dossier.errors.full_messages
         render :identite
       end
+    end
+
+    def show
+      dossier_with_champs
+
     end
 
     def modifier
