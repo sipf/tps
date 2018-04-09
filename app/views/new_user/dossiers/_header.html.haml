@@ -9,7 +9,7 @@
 
     %ul.tabs
       %li{ class: current_page?(dossier_path(dossier)) ? 'active' : nil }
-        = link_to "Données d'identité", dossier_path(dossier.procedure, dossier)
+        = link_to "Données d'identité", dossier_path(dossier)
       %li{ class: current_page?(dossier_path(dossier)) ? 'active' : nil }
         = link_to "Formulaire", dossier_path(dossier)
       %li{ class: current_page?(dossier_path(dossier)) ? 'active' : nil }
