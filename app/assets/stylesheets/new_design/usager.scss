@@ -15,6 +15,10 @@
 
   .dossier-id {
     margin-right: $default-padding;
+
+    a {
+      font-size: 14px;
+    }
   }
 
   .dossier-status {
