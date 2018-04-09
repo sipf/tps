@@ -1,1 +1,4 @@
 = render partial: "header", locals: { dossier: @dossier_with_champs }
+
+.container
+  = render partial: "shared/dossiers/identite_box", locals: { dossier: @dossier_with_champs }

@@ -3,13 +3,7 @@
 
 %h2 Identité du demandeur
 
-= render partial: "new_gestionnaire/dossiers/user_infos", locals: { user: @dossier.user }
-
-- if @dossier.entreprise.present?
-  = render partial: "identite_entreprise", locals: { entreprise: @dossier.entreprise }
-
-- if @dossier.individual.present?
-  = render partial: "identite_individual", locals: { individual: @dossier.individual }
+= render partial: "shared/dossiers/identite_box", locals: { dossier: @dossier }
 
 %h2 Formulaire
 

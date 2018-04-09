@@ -1,0 +1,8 @@
+.card
+  = render partial: "shared/dossiers/identite/user_infos", locals: { user: dossier.user }
+
+  - if dossier.entreprise.present?
+    = render partial: "shared/dossiers/identite/identite_entreprise", locals: { entreprise: dossier.entreprise }
+
+  - if dossier.individual.present?
+    = render partial: "shared/dossiers/identite/identite_individual", locals: { individual: dossier.individual }
