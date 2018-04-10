@@ -37,3 +37,4 @@ coverage/**/*
 Procfile.dev
 storage/
 .clever.json
+clevercloud/*.conf
