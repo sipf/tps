@@ -228,10 +228,6 @@ class Dossier < ApplicationRecord
     end
   end
 
-  def expose_legacy_carto_api?
-    procedure.expose_legacy_carto_api?
-  end
-
   def geo_position
     if etablissement.present?
       point = ApiAdresse::PointAdapter.new(etablissement.geo_adresse).geocode

@@ -8,12 +8,10 @@ class ProcedureSerializer < ActiveModel::Serializer
     :organisation,
     :direction,
     :archived_at,
-    :geographic_information,
     :total_dossier,
     :link,
     :state
 
-  has_one :geographic_information, serializer: ModuleApiCartoSerializer
   has_many :types_de_champ, serializer: TypeDeChampSerializer
   has_many :types_de_champ_private, serializer: TypeDeChampSerializer
   has_many :types_de_piece_justificative, serializer: TypeDePieceJustificativeSerializer
@@ -34,13 +32,5 @@ class ProcedureSerializer < ActiveModel::Serializer
 
   def state
     object.aasm_state
-  end
-
-  def geographic_information
-    if object.expose_legacy_carto_api?
-      object.module_api_carto
-    else
-      ModuleAPICarto.new(procedure: object)
-    end
   end
 end

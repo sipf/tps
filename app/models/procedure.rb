@@ -9,7 +9,6 @@ class Procedure < ApplicationRecord
   has_many :dossiers
   has_many :deleted_dossiers, dependent: :destroy
 
-  has_one :module_api_carto, dependent: :destroy
   has_one :attestation_template, dependent: :destroy
 
   belongs_to :administrateur
@@ -51,8 +50,7 @@ class Procedure < ApplicationRecord
       :administrateur,
       :types_de_champ_private,
       :types_de_champ,
-      :types_de_piece_justificative,
-      :module_api_carto
+      :types_de_piece_justificative
     )
   }
 
@@ -128,10 +126,6 @@ class Procedure < ApplicationRecord
 
   def publiee_ou_archivee?
     publiee? || archivee?
-  end
-
-  def expose_legacy_carto_api?
-    module_api_carto&.use_api_carto? && module_api_carto&.migrated?
   end
 
   # Warning: dossier after_save build_default_champs must be removed

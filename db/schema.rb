@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_04_125101) do
+ActiveRecord::Schema.define(version: 2018_12_08_103212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,22 +140,6 @@ ActiveRecord::Schema.define(version: 2018_12_04_125101) do
     t.index ["claimant_id"], name: "index_avis_on_claimant_id"
     t.index ["dossier_id"], name: "index_avis_on_dossier_id"
     t.index ["gestionnaire_id"], name: "index_avis_on_gestionnaire_id"
-  end
-
-  create_table "cadastres", id: :serial, force: :cascade do |t|
-    t.string "surface_intersection"
-    t.float "surface_parcelle"
-    t.string "numero"
-    t.integer "feuille"
-    t.string "section"
-    t.string "code_dep"
-    t.string "nom_com"
-    t.string "code_com"
-    t.string "code_arr"
-    t.text "geometry"
-    t.integer "dossier_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "champs", id: :serial, force: :cascade do |t|
@@ -413,17 +397,6 @@ ActiveRecord::Schema.define(version: 2018_12_04_125101) do
     t.datetime "updated_at"
   end
 
-  create_table "module_api_cartos", id: :serial, force: :cascade do |t|
-    t.integer "procedure_id"
-    t.boolean "use_api_carto", default: false
-    t.boolean "quartiers_prioritaires", default: false
-    t.boolean "cadastre", default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean "migrated"
-    t.index ["procedure_id"], name: "index_module_api_cartos_on_procedure_id", unique: true
-  end
-
   create_table "pieces_justificatives", id: :serial, force: :cascade do |t|
     t.string "content"
     t.integer "dossier_id"
@@ -485,16 +458,6 @@ ActiveRecord::Schema.define(version: 2018_12_04_125101) do
     t.index ["hidden_at"], name: "index_procedures_on_hidden_at"
     t.index ["parent_procedure_id"], name: "index_procedures_on_parent_procedure_id"
     t.index ["service_id"], name: "index_procedures_on_service_id"
-  end
-
-  create_table "quartier_prioritaires", id: :serial, force: :cascade do |t|
-    t.string "code"
-    t.string "nom"
-    t.string "commune"
-    t.text "geometry"
-    t.integer "dossier_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "received_mails", id: :serial, force: :cascade do |t|

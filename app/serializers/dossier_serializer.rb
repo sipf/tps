@@ -26,21 +26,7 @@ class DossierSerializer < ActiveModel::Serializer
   has_many :champs, serializer: ChampSerializer
 
   def champs
-    champs = object.champs.to_a
-
-    if object.expose_legacy_carto_api?
-      champ_carte = champs.find do |champ|
-        champ.type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:carte)
-      end
-
-      if champ_carte.present?
-        carto_champs = champ_carte.geo_areas.to_a
-        carto_champs << champ_carte.user_geo_area
-        champs += carto_champs.compact
-      end
-    end
-
-    champs
+    object.champs.to_a
   end
 
   def cerfa
