@@ -7,8 +7,6 @@ Flipflop.configure do
   strategy :default
 
   group :champs do
-    feature :champ_pj,
-      title: "Champ pièce justificative"
     feature :champ_siret,
       title: "Champ SIRET"
     feature :champ_integer_number,
@@ -27,5 +25,10 @@ Flipflop.configure do
       default: ENV['APP_NAME'] == 'tps'
     feature :pre_maintenance_mode
     feature :maintenance_mode
+  end
+
+  if Rails.env.test?
+    feature :test_a
+    feature :test_b
   end
 end
