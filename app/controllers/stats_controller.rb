@@ -13,6 +13,10 @@ class StatsController < ApplicationController
     @dossiers_numbers = dossiers_numbers(dossiers)
 
     @satisfaction_usagers = satisfaction_usagers
+
+    @contact_percentage = contact_percentage
+    @contact_percentage_excluded_tags = contact_percentage_excluded_tags
+
     @dossiers_states = dossiers_states
 
     @procedures_cumulative = cumulative_hash(procedures, :published_at)
@@ -158,6 +162,39 @@ class StatsController < ApplicationController
         data: data
       }
     end
+  end
+
+  def contact_percentage
+    from = Date.new(2017, 10)
+    to = Date.today.prev_month
+    excluded_tags = contact_percentage_excluded_tags
+
+    Helpscout::API.new
+      .conversations_reports(from, to)
+      .map do |report|
+        replies_count = helpscout_replies_count(report, excluded_tags)
+
+        start_date = report.dig('current', 'startDate').to_time.localtime
+        end_date = report.dig('current', 'endDate').to_time.localtime
+        dossiers_count = Dossier.where(en_construction_at: start_date..end_date).count
+
+        monthly_contact_percentage = replies_count.fdiv(dossiers_count || 1) * 100
+        [I18n.l(start_date, format: '%b %y'), monthly_contact_percentage.round(1)]
+      end
+  end
+
+  def contact_percentage_excluded_tags
+    ['openlab', 'bizdev', 'admin', 'webinaire']
+  end
+
+  def helpscout_replies_count(conversations_report, excluded_tags = [])
+    replies_count = conversations_report.dig('replies', 'count')
+    excluded_replies_count = conversations_report
+      .dig('tags', 'top')
+      .select { |tag| tag['name']&.in?(excluded_tags) }
+      .map { |tag| tag['count'] }
+      .sum
+    replies_count - excluded_replies_count
   end
 
   def cloned_from_library_procedures_ratio
