@@ -10,6 +10,6 @@ class DeviseUserMailerPreview < ActionMailer::Preview
   private
 
   def user
-    User.new(id: 10, email: "usager@example.com")
+    User.last || User.new(id: 10, email: 'user@ds.fr')
   end
 end

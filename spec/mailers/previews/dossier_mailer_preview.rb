@@ -19,14 +19,14 @@ class DossierMailerPreview < ActionMailer::Preview
   private
 
   def deleted_dossier
-    DeletedDossier.new(dossier_id: 1, procedure: procedure)
+    DeletedDossier.last || DeletedDossier.new(dossier_id: 1, procedure: test_procedure)
   end
 
   def dossier
-    Dossier.new(id: 1, procedure: procedure, user: User.new(email: "usager@example.com"))
+    Dossier.last || Dossier.new(id: 1, procedure: test_procedure)
   end
 
-  def procedure
+  def test_procedure
     Procedure.new(libelle: 'Démarche pour des marches')
   end
 end
